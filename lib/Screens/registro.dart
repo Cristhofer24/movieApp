@@ -13,69 +13,63 @@ class RegistroScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: SingleChildScrollView(
-        child: Padding(
+        child: Container(
+          // Fondo de la pantalla
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.blueAccent, Colors.blue.shade300],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Título principal centrado
+              // Título principal centrado con sombra
               Text(
                 'Crea tu cuenta',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: Colors.blueAccent,
-                      fontSize: 28,
+                      color: Colors.white,
+                      fontSize: 30,
+                      letterSpacing: 1.2,
                     ),
               ),
               const SizedBox(height: 10),
-              // Descripción centrada
+              // Descripción centrada con un color claro
               Text(
                 'Llena los campos para registrarte.',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Colors.grey[600],
+                      color: Colors.white70,
                       fontSize: 16,
                     ),
               ),
-              const SizedBox(height: 30),
-              // Campos de texto
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Nombre Completo',
-                  hintText: 'Ingresa tu nombre completo',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  prefixIcon: const Icon(Icons.person),
-                ),
+              const SizedBox(height: 40),
+              // Campos de texto con diseño mejorado
+              _buildTextField(
+                label: 'Nombre Completo',
+                hint: 'Ingresa tu nombre completo',
+                icon: Icons.person,
               ),
               const SizedBox(height: 20),
-              TextField(
+              _buildTextField(
+                label: 'Correo Electrónico',
+                hint: 'Ingresa tu correo',
+                icon: Icons.email,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  labelText: 'Correo Electrónico',
-                  hintText: 'Ingresa tu correo',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  prefixIcon: const Icon(Icons.email),
-                ),
               ),
               const SizedBox(height: 20),
-              TextField(
+              _buildTextField(
+                label: 'Contraseña',
+                hint: 'Ingresa una contraseña',
+                icon: Icons.lock,
                 obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'Contraseña',
-                  hintText: 'Ingresa una contraseña',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  prefixIcon: const Icon(Icons.lock),
-                ),
               ),
               const SizedBox(height: 30),
-              // Botón de registro centrado
+              // Botón de registro con bordes redondeados y sombra
               Center(
                 child: ElevatedButton(
                   onPressed: () {
@@ -91,6 +85,7 @@ class RegistroScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
+                    elevation: 10, // Sombra del botón
                   ),
                   child: const Text(
                     'Registrarse',
@@ -104,6 +99,31 @@ class RegistroScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  // Método para construir los campos de texto con estilo común
+  Widget _buildTextField({
+    required String label,
+    required String hint,
+    required IconData icon,
+    TextInputType? keyboardType,
+    bool obscureText = false,
+  }) {
+    return TextField(
+      obscureText: obscureText,
+      keyboardType: keyboardType,
+      decoration: InputDecoration(
+        labelText: label,
+        hintText: hint,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        prefixIcon: Icon(icon, color: Colors.blueAccent),
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       ),
     );
   }

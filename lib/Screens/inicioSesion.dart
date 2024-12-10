@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class InicioSesionScreen extends StatelessWidget {
@@ -34,7 +33,8 @@ class InicioSesionScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Acción al iniciar sesión
-                print('Iniciar sesión presionado');
+                // Aquí navegamos directamente a la pantalla1
+                Navigator.pushReplacementNamed(context, '/pantalla1');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.redAccent,
