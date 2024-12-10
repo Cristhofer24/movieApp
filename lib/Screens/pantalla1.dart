@@ -26,70 +26,110 @@ class Pantalla1 extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pantalla 1'),
-      ),
-      body: Column(
-        children: [
-          // Navegación mediante botón
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/pantalla2');
-              },
-              child: const Text('Ir al Reproductor de Video'),
-            ),
+        title: const Text('Catalogo de Peliculas'),
+        backgroundColor: Color.fromARGB(255, 113, 39, 155), // Color del AppBar
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.exit_to_app), // Icono de salir
+            onPressed: () {
+              // Aquí va la lógica para cerrar sesión
+              print("Cerrar sesión");
+              // Puedes usar Navigator.pop(context) si es necesario
+            },
           ),
-          // Cartas con imágenes
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-                childAspectRatio: 0.7,
-              ),
-              itemCount: imageUrls.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/pantalla2');
-                  },
-                  child: Card(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          ),
-                          child: Image.network(
-                            imageUrls[index],
-                            width: double.infinity,
-                            height: 300,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Imagen ${index + 1}',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 14),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
+          IconButton(
+            icon: const Icon(Icons.settings), // Icono de configuración
+            onPressed: () {
+              // Aquí va la lógica para las configuraciones
+              print("Ir a la configuración");
+            },
           ),
         ],
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            colors: [
+              Color.fromARGB(255, 39, 80, 155),
+              Color.fromARGB(255, 18, 9, 110),
+              Color.fromARGB(234, 2, 4, 67),
+            ],
+          ),
+        ),
+        child: Column(
+          children: [
+            // Navegación mediante botón
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/pantalla2');
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                       Color.fromARGB(255, 113, 39, 155), // Color del botón
+                ),
+                child: const Text(
+                  'Ir al Reproductor de Video',
+                  style: TextStyle(color: Colors.white), // Color del texto
+                ),
+                // color para el texto
+              ),
+            ),
+            // Cartas con imágenes
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  childAspectRatio: 0.7,
+                ),
+                itemCount: imageUrls.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/pantalla2');
+                    },
+                    child: Card(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                            child: Image.network(
+                              imageUrls[index],
+                              width: double.infinity,
+                              height: 300,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Opcion ${index + 1}',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 14),
+                             
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

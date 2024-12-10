@@ -35,7 +35,9 @@ class _Pantalla2State extends State<Pantalla2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(234, 2, 4, 67), // Fondo de la pantalla
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 39, 80, 155), // Color del AppBar
         title: const Text('Reproductor de Video'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -65,6 +67,7 @@ class _Pantalla2State extends State<Pantalla2> {
               IconButton(
                 icon: Icon(
                   _isPlaying ? Icons.pause : Icons.play_arrow,
+                  color: Colors.white, // Color del icono
                 ),
                 onPressed: () {
                   setState(() {
@@ -79,7 +82,7 @@ class _Pantalla2State extends State<Pantalla2> {
                 },
               ),
               IconButton(
-                icon: const Icon(Icons.stop),
+                icon: const Icon(Icons.stop, color: Colors.white), // Color del icono
                 onPressed: () {
                   setState(() {
                     _controller.pause();
@@ -89,7 +92,7 @@ class _Pantalla2State extends State<Pantalla2> {
                 },
               ),
               IconButton(
-                icon: const Icon(Icons.replay_10),
+                icon: const Icon(Icons.replay_10, color: Colors.white), // Color del icono
                 onPressed: () {
                   setState(() {
                     final position = _controller.value.position;
@@ -98,7 +101,7 @@ class _Pantalla2State extends State<Pantalla2> {
                 },
               ),
               IconButton(
-                icon: const Icon(Icons.forward_10),
+                icon: const Icon(Icons.forward_10, color: Colors.white), // Color del icono
                 onPressed: () {
                   setState(() {
                     final position = _controller.value.position;
@@ -109,11 +112,13 @@ class _Pantalla2State extends State<Pantalla2> {
             ],
           ),
 
+          const SizedBox(height: 20),
+
           // Control de volumen
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Volumen'),
+              const Text('Volumen', style: TextStyle(color: Colors.white)), // Color del texto
               Slider(
                 value: _volume,
                 min: 0.0,
@@ -124,15 +129,19 @@ class _Pantalla2State extends State<Pantalla2> {
                     _controller.setVolume(_volume);
                   });
                 },
+                activeColor: Color.fromARGB(255, 113, 39, 155), // Color activo del slider
+                inactiveColor: Colors.white.withOpacity(0.5), // Color inactivo del slider
               ),
             ],
           ),
+
+          const SizedBox(height: 20),
 
           // Control de progreso del video
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Progreso'),
+              const Text('Progreso', style: TextStyle(color: Colors.white)), // Color del texto
               Slider(
                 value: _seekValue,
                 min: 0.0,
@@ -143,6 +152,8 @@ class _Pantalla2State extends State<Pantalla2> {
                     _controller.seekTo(Duration(seconds: value.toInt()));
                   });
                 },
+                activeColor: Color.fromARGB(255, 113, 39, 155), // Color activo del slider
+                inactiveColor: Colors.white.withOpacity(0.5), // Color inactivo del slider
               ),
             ],
           ),

@@ -17,7 +17,7 @@ class RegistroScreen extends StatelessWidget {
           // Fondo de la pantalla
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.blueAccent, Colors.blue.shade300],
+              colors: [Colors.blueAccent, Colors.blue.shade300, Colors.blue.shade600],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
@@ -32,7 +32,7 @@ class RegistroScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.blueAccent .shade100,
                       fontSize: 30,
                       letterSpacing: 1.2,
                     ),
